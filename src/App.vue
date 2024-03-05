@@ -1,19 +1,29 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <PageHeader />
+    <ChartSection v-if="!isLoading" />
+    <StatusTable v-if="!isLoading" />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import StatusTable from "./components/StatusTable.vue";
+import ChartSection from "./components/ChartSection/ChartSection.vue";
+import PageHeader from "./components/PageHeader/PageHeader.vue";
+import { store } from "./store";
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    StatusTable,
+    ChartSection,
+    PageHeader,
+  },
+  computed: {
+    isLoading() {
+      return store.isLoading;
+    },
+  },
+};
 </script>
 
 <style>
